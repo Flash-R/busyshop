@@ -8,6 +8,8 @@ import com.example.busyshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +24,8 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    public ResponseEntity addToCart(ItemRequestDto itemRequestDto){
+    @PostMapping("/add")
+    public ResponseEntity addToCart(@RequestBody ItemRequestDto itemRequestDto){
         try{
             Item item =  itemService.createItem(itemRequestDto);
             CartResponseDto cartResponseDto = cartService.addItemToCart(itemRequestDto, item);

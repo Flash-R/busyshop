@@ -19,5 +19,7 @@ public class CustomerRequestDto {
 
     String phone;
 
+    String address;
+
     Gender gender;
 }

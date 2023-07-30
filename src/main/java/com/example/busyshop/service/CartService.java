@@ -30,13 +30,14 @@ public class CartService {
         Customer customer = customerRepository.findByEmail(itemResponseDto.getCustomerEmail());
 
         //get product
-        Product product = item.getProduct();
+        Product product = productRepository.findById(itemResponseDto.getProductId()).get();
 
         //get individual cart
         Cart cart = customer.getCart();
 
         cart.setCartTotal(cart.getCartTotal() + product.getPrice() * itemResponseDto.getRequiredQuantity());
         item.setCart(cart);
+        item.setProduct(product);
         // Save the item first to avoid saving duplicates
         Item savedItem = itemRepository.save(item);
         cart.getItems().add(savedItem);

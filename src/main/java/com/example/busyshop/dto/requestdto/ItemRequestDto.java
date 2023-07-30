@@ -11,10 +11,13 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ItemRequestDto {
-    int requiredQuantity;
+
+    String customerEmail;
 
     int productId;
 
-    String customerEmail;
+    int requiredQuantity;
+
+
 
 }
