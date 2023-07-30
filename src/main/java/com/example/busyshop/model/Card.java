@@ -19,6 +19,7 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
+    @Column(unique = true)
     String cardNo;
 
     int cvv;

@@ -14,13 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 @Table(name = "orderEntity")
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String orderId;
+    String orderId; //UUID
 
     @CreationTimestamp
     Date orderDate;
