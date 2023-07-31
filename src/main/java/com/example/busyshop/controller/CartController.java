@@ -1,7 +1,9 @@
 package com.example.busyshop.controller;
 
+import com.example.busyshop.dto.requestdto.CheckoutRequestDto;
 import com.example.busyshop.dto.requestdto.ItemRequestDto;
 import com.example.busyshop.dto.responsedto.CartResponseDto;
+import com.example.busyshop.dto.responsedto.OrderResponseDto;
 import com.example.busyshop.model.Item;
 import com.example.busyshop.service.CartService;
 import com.example.busyshop.service.ItemService;
@@ -33,5 +35,9 @@ public class CartController {
         }catch(Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    public OrderResponseDto checkoutCart(@RequestBody CheckoutRequestDto checkoutRequestDto){
+        OrderResponseDto responseDto = cartService.checkoutCart(checkoutRequestDto);
     }
 }

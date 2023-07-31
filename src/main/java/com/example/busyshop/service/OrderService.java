@@ -92,4 +92,33 @@ public class OrderService {
 
 
     }
+
+    public OrderEntity placeOrder(Cart cart, Card card) {
+        OrderEntity order = new OrderEntity();
+        order.setOrderId(String.valueOf(UUID.randomUUID()));
+        order.setCardUsed(cardService.hideCardNumber(card.getCardNo()));
+
+        int orderTotal = 0;
+
+        for(Item item : cart.getItems()){
+            Product product = item.getProduct();
+
+            if(product.getQuantity() < item.getRequiredQuantity())
+                throw new InsufficientProductAmountException("insufficient product amount");
+
+            int newQuantity = product.getQuantity() - item.getRequiredQuantity();
+            product.setQuantity(newQuantity);
+
+            if(product.getQuantity() == 0)
+                product.setProductStatus(ProductStatus.OUT_OF_STOCK);
+            orderTotal += product.getPrice() * item.getRequiredQuantity();
+
+            item.setOrderEntity(order);
+        }
+        order.setOrderTotal(orderTotal);
+        order.setItems(cart.getItems());
+        order.setCustomer(card.getCustomer());
+
+        return order;
+    }
 }
