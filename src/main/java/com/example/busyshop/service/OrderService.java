@@ -77,14 +77,13 @@ public class OrderService {
         orderEntity.getItems().add(item);
 
         OrderEntity savedOrder = orderRepository.save(orderEntity);
-        System.out.println(savedOrder);
 
         product.getItemList().add(savedOrder.getItems().get(0));
 
         customer.getOrders().add(savedOrder);
 
-        productRepository.save(product);
-        customerRepository.save(customer);
+//        productRepository.save(product);
+//        customerRepository.save(customer);
 
         //prepare the ResponseDto
 

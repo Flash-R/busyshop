@@ -22,6 +22,7 @@ public class OrderTransformer {
         }
         return OrderResponseDto.builder()
                 .customerName(orderEntity.getCustomer().getName())
+                .orderId(orderEntity.getOrderId())
                 .orderTotal(orderEntity.getOrderTotal())
                 .cardUsed(orderEntity.getCardUsed())
                 .orderDate(orderEntity.getOrderDate())
